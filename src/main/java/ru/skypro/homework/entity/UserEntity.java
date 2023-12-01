@@ -36,6 +36,7 @@ public class UserEntity {
 
     @NotBlank
     @Pattern(regexp = "USER|ADMIN")
+    @Column(name = "user_role")
     private Role role;
 
     @OneToMany(mappedBy = "author")
