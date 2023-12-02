@@ -65,6 +65,17 @@
       <artifactId>mapstruct-processor</artifactId>
       <version>1.5.5.Final</version>
     </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+    </dependency>
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.liquibase/liquibase-maven-plugin &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.liquibase</groupId>-->
+<!--      <artifactId>liquibase-maven-plugin</artifactId>-->
+<!--      <version>4.25.0</version>-->
+<!--    </dependency>-->
+
     <!--suppress VulnerableLibrariesLocal -->
     <dependency>
       <groupId>com.h2database</groupId>

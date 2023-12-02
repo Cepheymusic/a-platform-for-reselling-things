@@ -5,6 +5,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 import ru.skypro.homework.dto.Comment;
+import ru.skypro.homework.dto.CommentsList;
 import ru.skypro.homework.dto.CreateOrUpdateComment;
 import ru.skypro.homework.entity.CommentEntity;
 
@@ -51,5 +52,6 @@ public interface CommentMapper {
     @Mapping(target = "text", source = "text")
     CreateOrUpdateComment createOrUpdateCommentFromCommentEntity(CommentEntity commentEntity);
 
-
+//    CommentsList
+//            CreateOrUpdateComment
 }

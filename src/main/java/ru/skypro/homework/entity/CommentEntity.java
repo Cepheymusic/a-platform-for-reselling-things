@@ -27,6 +27,7 @@ public class CommentEntity {
 
     @NotBlank
     @Size(min = 8, max = 64)
+    @Column(name = "comment_text")
     private String text;
 
     @ManyToOne

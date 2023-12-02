@@ -39,6 +39,8 @@ public class UserEntity {
     @Column(name = "user_role")
     private Role role;
 
+    private String password;
+
     @OneToMany(mappedBy = "author")
     private List<AdEntity> ads;
 

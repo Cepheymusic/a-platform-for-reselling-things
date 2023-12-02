@@ -22,4 +22,8 @@ public interface AdMapper {
 
     @Mapping(target = "comments", ignore = true)
     AdEntity adDTOToAd(Ad adDTO);
+
+//    AdsList
+//    CreateOrUpdateAd
+//    ExtendedAd
 }
