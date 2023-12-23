@@ -11,7 +11,6 @@ import ru.skypro.homework.entity.UserEntity;
 public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-
     User userToUserDTO(UserEntity userEntity);
 
     @Mapping(target = "ads", ignore = true)
