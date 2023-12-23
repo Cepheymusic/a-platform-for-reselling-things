@@ -6,17 +6,15 @@ public class User {
     private String firstName;
     private String lastName;
     private String phone;
+    private Role role;
+    private String image;
 
     public Role getRole() {
         return role;
     }
-
     public void setRole(Role role) {
         this.role = role;
     }
-
-    private Role role;
-    private String image;
 
     public User(int id, String email, String firstName, String lastName, String phone, Role role, String image) {
         this.id = id;
