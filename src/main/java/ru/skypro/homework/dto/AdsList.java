@@ -6,8 +6,8 @@ public class AdsList {
     private int count;
     private List<Ad> results;
 
-    public AdsList(int count, List<Ad> results) {
-        this.count = count;
+    public AdsList(List<Ad> results) {
+        this.count = results.size();
         this.results = results;
     }
 

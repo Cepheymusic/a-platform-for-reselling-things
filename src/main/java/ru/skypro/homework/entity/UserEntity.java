@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +35,6 @@ public class UserEntity {
 
     private String image;
 
-    @NotBlank
-    @Pattern(regexp = "USER|ADMIN")
     @Column(name = "user_role")
     private Role role;
 

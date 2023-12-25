@@ -19,7 +19,7 @@ public class AdEntity {
     @JoinColumn(name = "author_id", nullable = false)
     private UserEntity author;
 
-    @NotBlank
+//    @NotBlank
     @Column(nullable = false)
     private String image;
 
