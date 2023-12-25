@@ -5,6 +5,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import ru.skypro.homework.dto.Ad;
 import ru.skypro.homework.dto.CreateOrUpdateAd;
+import ru.skypro.homework.dto.ExtendedAd;
 import ru.skypro.homework.entity.AdEntity;
 
 @Mapper
@@ -16,13 +17,16 @@ public interface AdMapper {
     @Mapping(source = "id", target = "pkAdId")
     Ad adToAdDTO(AdEntity adEntity);
 
+    AdEntity adEntityToCreateOrUpdateAd(CreateOrUpdateAd createOrUpdateAd);
+
+
     @Mapping(target = "id", source = "pkAdId")
     @Mapping(source = "authorId", target = "author.id")
     @Mapping(target = "description", ignore = true)
     @Mapping(target = "comments", ignore = true)
     AdEntity adDTOToAd(Ad adDTO);
 
+    ExtendedAd adEntityToExtendedAdDTO(AdEntity adEntity);
+
 //    AdsList
-//    CreateOrUpdateAd
-//    ExtendedAd
 }

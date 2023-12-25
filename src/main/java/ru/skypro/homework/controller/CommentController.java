@@ -10,9 +10,6 @@ import ru.skypro.homework.dto.CommentsList;
 import ru.skypro.homework.dto.CreateOrUpdateComment;
 import ru.skypro.homework.service.impl.CommentService;
 
-import java.time.Instant;
-
-
 @RestController
 @RequestMapping("/ads")
 @CrossOrigin(value = "http://localhost:3000")
@@ -23,9 +20,9 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping
-    public CommentsList getComments() {
-        return commentService.getComments();
+    @GetMapping("{adId}/comments")
+    public CommentsList getComments(@PathVariable int adId) {
+        return commentService.getComments(adId);
     }
 
     @PostMapping("/{adId}/comments")
