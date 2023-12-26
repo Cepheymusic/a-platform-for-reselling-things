@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.homework.dto.*;
 import ru.skypro.homework.service.impl.AdService;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -42,7 +43,7 @@ public class AdController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteAd(@PathVariable("id") int id,
-                                           @AuthenticationPrincipal UserDetails userDetails) {
+                                           @AuthenticationPrincipal UserDetails userDetails) throws IOException {
         adService.deleteAd(id, userDetails);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -59,7 +60,9 @@ public class AdController {
     }
 
     @PatchMapping(value = "{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<byte[]> updateImage(@PathVariable("id") int id, @RequestPart("image") MultipartFile newImage) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<byte[]> updateImage(@PathVariable("id") int id, @RequestPart("image") MultipartFile newImage,
+                                              @AuthenticationPrincipal UserDetails userDetails) throws IOException {
+        adService.updateImage(id, newImage, userDetails);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
