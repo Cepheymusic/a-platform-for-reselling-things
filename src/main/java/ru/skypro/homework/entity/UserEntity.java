@@ -45,5 +45,9 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "author")
     private List<CommentEntity> comments;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "image_entity_id")
+    private ImageEntity imageEntity;
 }
 

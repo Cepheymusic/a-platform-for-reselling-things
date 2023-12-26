@@ -37,4 +37,8 @@ public class AdEntity {
 
     @OneToMany(mappedBy = "ad")
     private List<CommentEntity> comments;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "image_entity_id", nullable = false)
+    private ImageEntity imageEntity;
 }
