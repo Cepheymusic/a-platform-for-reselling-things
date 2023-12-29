@@ -36,19 +36,19 @@ public class AdController {
         return adService.createAd(createOrUpdateAd,image, userDetails);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ExtendedAd getAd(@PathVariable("id") int id) {
         return adService.getAd(id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAd(@PathVariable("id") int id,
                                            @AuthenticationPrincipal UserDetails userDetails) throws IOException {
         adService.deleteAd(id, userDetails);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping("/{id}")
     public Ad updateAd(@PathVariable("id") int id, CreateOrUpdateAd createOrUpdateAd,
                        @AuthenticationPrincipal UserDetails userDetails) {
         return adService.updateAd(id, createOrUpdateAd, userDetails);
@@ -56,10 +56,10 @@ public class AdController {
 
     @GetMapping("/me")
     public AdsList getMyAds(@AuthenticationPrincipal UserDetails userDetails) {
-        return adService.getMyAds((UserData) userDetails);
+        return adService.getMyAds(userDetails);
     }
 
-    @PatchMapping(value = "{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PatchMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<byte[]> updateImage(@PathVariable("id") int id, @RequestPart("image") MultipartFile newImage,
                                               @AuthenticationPrincipal UserDetails userDetails) throws IOException {
         adService.updateImage(id, newImage, userDetails);

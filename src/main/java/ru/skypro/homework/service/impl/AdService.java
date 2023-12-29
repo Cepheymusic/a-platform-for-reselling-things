@@ -67,8 +67,8 @@ public class AdService {
         adRepository.save(adEntity);
         return AdMapper.INSTANCE.adToAdDTO(adEntity);
     }
-    public AdsList getMyAds(UserData userData) {
-        List<AdEntity> adEntities = adRepository.findByAuthorId(userData.getId());
+    public AdsList getMyAds(UserDetails userDetails) {
+        List<AdEntity> adEntities = adRepository.findAdsByEmail(userDetails.getUsername());
         List<Ad> adList = adEntities.stream().map(AdMapper.INSTANCE::adToAdDTO).collect(Collectors.toList());
         return new AdsList(adList);
     }

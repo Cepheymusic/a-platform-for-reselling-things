@@ -20,9 +20,6 @@ public class CommentEntity {
     private UserEntity author;
 
     @NotNull
-    private String image;
-
-    @NotNull
     private Instant createdAtInst;
 
     @NotBlank

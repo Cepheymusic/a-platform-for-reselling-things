@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import ru.skypro.homework.Exceptions.AdNotFoundException;
 import ru.skypro.homework.Exceptions.CommentNotFound;
+import ru.skypro.homework.Exceptions.ForbiddenException;
 import ru.skypro.homework.Exceptions.UserNotFoundException;
 import ru.skypro.homework.dto.Comment;
 import ru.skypro.homework.dto.CommentsList;
@@ -17,6 +18,7 @@ import ru.skypro.homework.repository.AdRepository;
 import ru.skypro.homework.repository.CommentRepository;
 import ru.skypro.homework.repository.UserRepository;
 import java.time.Instant;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -35,22 +37,23 @@ public class CommentService {
     }
 
     public CommentsList getComments(int adId) {
-        return (CommentsList) commentRepository.findByAdId(adId).stream().map(CommentMapper.INSTANCE::CommentToCommentDTO).
-                collect(Collectors.toList());
+        List<Comment> comments = commentRepository.findByAd_id(adId).stream().map(
+                CommentMapper.INSTANCE::CommentToCommentDTO).collect(Collectors.toList());
+        return new CommentsList(comments);
     }
 
     public Comment createComment(int adId, CreateOrUpdateComment createOrUpdateComment, UserDetails userDetails) {
         AdEntity adEntity = adRepository.findById(adId).orElseThrow(() -> new AdNotFoundException("Ad is not found"));
         UserEntity userEntity = userRepository.findByEmail(userDetails.getUsername()).orElseThrow(
                 () -> new UserNotFoundException("User is not found"));
-        CommentEntity commentEntity = new CommentEntity(0, userEntity, "",
+        CommentEntity commentEntity = new CommentEntity(0, userEntity,
                 Instant.now(), createOrUpdateComment.getText(), adEntity);
         commentRepository.save(commentEntity);
         return CommentMapper.INSTANCE.CommentToCommentDTO(commentEntity);
     }
 
     public void deleteComment(int adId, int commentId, UserDetails userDetails) {
-        CommentEntity commentEntity = commentRepository.findById(adId).orElseThrow(
+        CommentEntity commentEntity = commentRepository.findById(commentId).orElseThrow(
                 () -> new CommentNotFound("Comment is not found"));
         accessVerification(userDetails, commentEntity);
         commentRepository.deleteById(commentId);
@@ -69,7 +72,7 @@ public class CommentService {
     public void accessVerification(UserDetails userDetails, CommentEntity commentEntity) {
         if (!userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
                 && !userDetails.getUsername().equals(commentEntity.getAuthor().getEmail())) {
-            throw new RuntimeException();
+            throw new ForbiddenException("Access is denied");
         }
     }
 }

@@ -8,10 +8,8 @@ public class CommentsList {
     private int count;
     private List<Comment> result;
 
-    public CommentsList(){}
-
-    public CommentsList(int count, List<Comment> result) {
-        this.count = count;
+    public CommentsList(List<Comment> result) {
+        this.count = result.size();
         this.result = result;
     }
 

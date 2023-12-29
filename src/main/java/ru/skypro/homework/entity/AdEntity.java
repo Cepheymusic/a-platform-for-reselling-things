@@ -19,10 +19,6 @@ public class AdEntity {
     @JoinColumn(name = "author_id", nullable = false)
     private UserEntity author;
 
-//    @NotBlank
-    @Column(nullable = false)
-    private String image;
-
     @Column(nullable = false)
     private Integer price;
 
@@ -32,7 +28,7 @@ public class AdEntity {
     private String title;
 
     @Size(min = 8, max = 64)
-    @Column
+    @Column(length = 64)
     private String description;
 
     @OneToMany(mappedBy = "ad")

@@ -23,17 +23,17 @@ import java.util.UUID;
 @Service
 public class ImageService {
     private ImageRepository imageRepository;
-    @Value("${uploading.image.path}")
     private String imagePath;
 
-    public ImageService(@Value("${uploading.image.path}") ImageRepository imageRepository, String imagePath) {
+    public ImageService(ImageRepository imageRepository, @Value("${uploading.image.path}") String imagePath) {
         this.imageRepository = imageRepository;
         this.imagePath = imagePath;
     }
 
     @Transactional
     public byte[] getImage(Integer idImage) {
-        ImageEntity imageEntity = imageRepository.findById(idImage).orElseThrow(() -> new RuntimeException());
+        ImageEntity imageEntity = imageRepository.findById(idImage).orElseThrow(
+                () -> new ImageException("Image not found"));
         try {
             Path imagePath = Paths.get(imageEntity.getFilePath());
             return Files.readAllBytes(imagePath);
@@ -49,8 +49,6 @@ public class ImageService {
             Path imagePath = Paths.get(imageEntity.getFilePath());
             imageRepository.deleteById(imageEntity.getId());
             Files.delete(imagePath);
-        } else {
-            throw new ImageException("Image is not found");
         }
     }
 
@@ -60,8 +58,6 @@ public class ImageService {
             Path imagePath = Paths.get(imageEntity.getFilePath());
             imageRepository.deleteById(imageEntity.getId());
             Files.delete(imagePath);
-        } else {
-            throw new ImageException("Image is not found");
         }
     }
 
@@ -70,15 +66,14 @@ public class ImageService {
             if (imageEntity != null) {
                 Path iPath = Paths.get(imageEntity.getFilePath());
                 Files.delete(iPath);
-            } else {
-            throw new ImageException("Image is not found");
-        }
+            }
     }
 
     public ImageEntity downloadImage(MultipartFile multipartFile) {
         Path filePath;
         if (multipartFile.getOriginalFilename() != null) {
-            filePath = Paths.get(imagePath + UUID.randomUUID() + "." + multipartFile.getOriginalFilename().split("\\.")[1]);
+            filePath = Paths.get(imagePath +
+                    UUID.randomUUID() + "." + multipartFile.getOriginalFilename().split("\\.")[1]);
         } else throw new FilePathIsNullException("File Path is null");
         try {
             if (multipartFile.isEmpty()) {
