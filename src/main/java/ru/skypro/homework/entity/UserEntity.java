@@ -32,7 +32,7 @@ public class UserEntity {
     @NotBlank
     @Pattern(regexp = "\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}")
     private String phone;
-
+    @Enumerated(value = EnumType.STRING)
     private Role role;
 
     private String password;

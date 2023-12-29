@@ -1,5 +1,6 @@
 package ru.skypro.homework.controller;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public User me(@AuthenticationPrincipal UserDetails userDetails) {
+    public User me(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
         return userService.getUser(userDetails);
     }
 

@@ -1,16 +1,14 @@
 package ru.skypro.homework.dto;
 
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 public class CommentsList {
     private int count;
-    private List<Comment> result;
+    private List<Comment> results;
 
-    public CommentsList(List<Comment> result) {
-        this.count = result.size();
-        this.result = result;
+    public CommentsList(List<Comment> results) {
+        this.count = results.size();
+        this.results = results;
     }
 
     public int getCount() {
@@ -21,11 +19,11 @@ public class CommentsList {
         this.count = count;
     }
 
-    public List<Comment> getResult() {
-        return result;
+    public List<Comment> getResults() {
+        return results;
     }
 
-    public void setResult(List<Comment> result) {
-        this.result = result;
+    public void setResults(List<Comment> results) {
+        this.results = results;
     }
 }

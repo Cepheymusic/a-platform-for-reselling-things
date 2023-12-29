@@ -21,12 +21,12 @@ public class CommentController {
     }
 
     @GetMapping("/{id}/comments")
-    public CommentsList getComments(@PathVariable int adId) {
-        return commentService.getComments(adId);
+    public CommentsList getComments(@PathVariable int id) {
+        return commentService.getComments(id);
     }
 
     @PostMapping("/{id}/comments")
-    public Comment createComment(@PathVariable("adId") int adId, CreateOrUpdateComment createOrUpdateComment,
+    public Comment createComment(@PathVariable("id") int adId, @RequestBody CreateOrUpdateComment createOrUpdateComment,
                                  @AuthenticationPrincipal UserDetails userDetails) {
         return commentService.createComment(adId, createOrUpdateComment, userDetails);
     }
