@@ -38,7 +38,7 @@ public class AdService {
     public Ad createAd(CreateOrUpdateAd createOrUpdateAd, MultipartFile image, UserDetails userDetails) {
         UserEntity userEntity = userRepository.findByEmail(userDetails.getUsername())
                 .orElseThrow(() -> new UserNotFoundException("User is not found"));
-        AdEntity adEntity = AdMapper.INSTANCE.adEntityToCreateOrUpdateAd(createOrUpdateAd);
+        AdEntity adEntity = AdMapper.INSTANCE.createOrUpdateAdDTOToAd(createOrUpdateAd);
         ImageEntity imageEntity = imageService.downloadImage(image);
         adEntity.setAuthor(userEntity);
         adEntity.setImageEntity(imageEntity);

@@ -14,11 +14,11 @@ public interface AdMapper {
 
     AdMapper INSTANCE = Mappers.getMapper(AdMapper.class);
 
-    @Mapping(source = "author.id", target = "authorId")
+    @Mapping(source = "author.id", target = "author")
     @Mapping(source = "id", target = "pk")
     Ad adToAdDTO(AdEntity adEntity);
 
-    AdEntity adEntityToCreateOrUpdateAd(CreateOrUpdateAd createOrUpdateAd);
+    AdEntity createOrUpdateAdDTOToAd(CreateOrUpdateAd createOrUpdateAd);
 
     @Named("isIdToUrl")
     static String isIdToUrl(int id) {
@@ -28,7 +28,7 @@ public interface AdMapper {
     @Mapping(target = "authorFirstName", source = "author.firstName")
     @Mapping(target = "authorLastName", source = "author.lastName")
     @Mapping(target = "email", source = "author.email")
-    @Mapping(target = "image", source = "imageEntity.id", qualifiedByName = "isIdToUrl")
+//    @Mapping(target = "image", source = "imageEntity.id", qualifiedByName = "isIdToUrl")
     @Mapping(target = "phone", source = "author.phone")
     ExtendedAd adEntityToExtendedAdDTO(AdEntity adEntity);
 }

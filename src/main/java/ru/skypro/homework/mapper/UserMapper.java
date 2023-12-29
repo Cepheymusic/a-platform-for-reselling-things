@@ -17,7 +17,7 @@ public interface UserMapper {
     static String isIdToUrl(Integer id) {
         return "/image/" + id;
     }
-    @Mapping(source = "imageEntity.id", target = "image", qualifiedByName = "isIdToUrl")
+//    @Mapping(source = "imageEntity.id", target = "image", qualifiedByName = "isIdToUrl")
     User userToUserDTO(UserEntity userEntity);
 }
 

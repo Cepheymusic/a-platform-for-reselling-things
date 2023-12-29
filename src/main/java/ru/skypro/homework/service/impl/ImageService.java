@@ -30,7 +30,7 @@ public class ImageService {
         this.imagePath = imagePath;
     }
 
-    @Transactional
+    //@Transactional
     public byte[] getImage(Integer idImage) {
         ImageEntity imageEntity = imageRepository.findById(idImage).orElseThrow(
                 () -> new ImageException("Image not found"));

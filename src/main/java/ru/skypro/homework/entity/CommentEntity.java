@@ -22,7 +22,7 @@ public class CommentEntity {
     @NotNull
     private Instant createdAtInst;
 
-    @NotBlank
+
     @Size(min = 8, max = 64)
     @Column(name = "comment_text")
     private String text;

@@ -16,10 +16,10 @@ public interface CommentMapper {
 
     CommentMapper INSTANCE = Mappers.getMapper(CommentMapper.class);
 
-    @Mapping(target = "pkIdComment", source = "id")
+    @Mapping(target = "pk", source = "id")
     @Mapping(target = "authorImage", source = "author.imageEntity.id")
     @Mapping(target = "authorFirstName", source = "author.firstName")
-    @Mapping(source = "author.id", target = "authorId")
+    @Mapping(source = "author.id", target = "author")
     @Mapping(source = "createdAtInst", target = "createdAt", qualifiedByName = "instantToLong")
     Comment CommentToCommentDTO(CommentEntity commentEntity);
 
