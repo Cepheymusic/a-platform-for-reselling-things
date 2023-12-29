@@ -1,10 +1,4 @@
 databaseChangeLog:
   - include:
       relativeToChangelogFile: true
-      file: user.sql
-  - include:
-      relativeToChangelogFile: true
-      file: ad.sql
-  - include:
-      relativeToChangelogFile: true
-      file: comment.sql
+      file: scripts.sql

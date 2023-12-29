@@ -2,6 +2,7 @@ package ru.skypro.homework.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 import ru.skypro.homework.dto.Ad;
 import ru.skypro.homework.dto.CreateOrUpdateAd;
@@ -14,19 +15,20 @@ public interface AdMapper {
     AdMapper INSTANCE = Mappers.getMapper(AdMapper.class);
 
     @Mapping(source = "author.id", target = "authorId")
-    @Mapping(source = "id", target = "pkAdId")
+    @Mapping(source = "id", target = "pk")
     Ad adToAdDTO(AdEntity adEntity);
 
     AdEntity adEntityToCreateOrUpdateAd(CreateOrUpdateAd createOrUpdateAd);
 
-
-    @Mapping(target = "id", source = "pkAdId")
-    @Mapping(source = "authorId", target = "author.id")
-    @Mapping(target = "description", ignore = true)
-    @Mapping(target = "comments", ignore = true)
-    AdEntity adDTOToAd(Ad adDTO);
-
+    @Named("isIdToUrl")
+    static String isIdToUrl(int id) {
+        return "/image/" + id;
+    }
+    @Mapping(target = "pk", source = "id")
+    @Mapping(target = "authorFirstName", source = "author.firstName")
+    @Mapping(target = "authorLastName", source = "author.lastName")
+    @Mapping(target = "email", source = "author.email")
+    @Mapping(target = "image", source = "imageEntity.id", qualifiedByName = "isIdToUrl")
+    @Mapping(target = "phone", source = "author.phone")
     ExtendedAd adEntityToExtendedAdDTO(AdEntity adEntity);
-
-//    AdsList
 }

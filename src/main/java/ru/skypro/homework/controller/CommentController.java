@@ -20,12 +20,12 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("{adId}/comments")
+    @GetMapping("/{id}/comments")
     public CommentsList getComments(@PathVariable int adId) {
         return commentService.getComments(adId);
     }
 
-    @PostMapping("/{adId}/comments")
+    @PostMapping("/{id}/comments")
     public Comment createComment(@PathVariable("adId") int adId, CreateOrUpdateComment createOrUpdateComment,
                                  @AuthenticationPrincipal UserDetails userDetails) {
         return commentService.createComment(adId, createOrUpdateComment, userDetails);

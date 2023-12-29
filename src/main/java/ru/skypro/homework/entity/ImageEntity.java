@@ -18,6 +18,10 @@ public class ImageEntity {
         this.filePath = filePath;
     }
 
+    public ImageEntity() {
+
+    }
+
     public String getFilePath() {
         return filePath;
     }

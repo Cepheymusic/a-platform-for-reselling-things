@@ -3,14 +3,14 @@ package ru.skypro.homework.dto;
 public class Ad {
     private int authorId;
     private String image;
-    private int pkAdId;
+    private int pk;
     private int price;
     private String title;
 
-    public Ad(int authorId, String image, int pkAdId, int price, String title) {
+    public Ad(int authorId, String image, int pk, int price, String title) {
         this.authorId = authorId;
         this.image = image;
-        this.pkAdId = pkAdId;
+        this.pk = pk;
         this.price = price;
         this.title = title;
     }
@@ -31,14 +31,6 @@ public class Ad {
         this.image = image;
     }
 
-    public int getPkAdId() {
-        return pkAdId;
-    }
-
-    public void setPkAdId(int pkAdId) {
-        this.pkAdId = pkAdId;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -53,5 +45,9 @@ public class Ad {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getPk() {
+        return pk;
     }
 }
