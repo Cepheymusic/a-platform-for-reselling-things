@@ -26,9 +26,9 @@ public class CommentController {
     }
 
     @PostMapping("/{id}/comments")
-    public Comment createComment(@PathVariable("id") int adId, @RequestBody CreateOrUpdateComment createOrUpdateComment,
+    public Comment createComment(@PathVariable("id") int id, @RequestBody CreateOrUpdateComment createOrUpdateComment,
                                  @AuthenticationPrincipal UserDetails userDetails) {
-        return commentService.createComment(adId, createOrUpdateComment, userDetails);
+        return commentService.createComment(id, createOrUpdateComment, userDetails);
     }
 
     @DeleteMapping("/{adId}/comments/{commentId}")

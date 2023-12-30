@@ -49,7 +49,7 @@ public class AdController {
     }
 
     @PatchMapping("/{id}")
-    public Ad updateAd(@PathVariable("id") int id, CreateOrUpdateAd createOrUpdateAd,
+    public Ad updateAd(@PathVariable("id") int id,@RequestBody CreateOrUpdateAd createOrUpdateAd,
                        @AuthenticationPrincipal UserDetails userDetails) {
         return adService.updateAd(id, createOrUpdateAd, userDetails);
     }

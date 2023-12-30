@@ -16,6 +16,7 @@ public interface AdMapper {
 
     @Mapping(source = "author.id", target = "author")
     @Mapping(source = "id", target = "pk")
+    @Mapping(source = "imageEntity.id", target = "image", qualifiedByName = "isIdToUrl")
     Ad adToAdDTO(AdEntity adEntity);
 
     AdEntity createOrUpdateAdDTOToAd(CreateOrUpdateAd createOrUpdateAd);
@@ -28,7 +29,7 @@ public interface AdMapper {
     @Mapping(target = "authorFirstName", source = "author.firstName")
     @Mapping(target = "authorLastName", source = "author.lastName")
     @Mapping(target = "email", source = "author.email")
-//    @Mapping(target = "image", source = "imageEntity.id", qualifiedByName = "isIdToUrl")
+    @Mapping(target = "image", source = "imageEntity.id", qualifiedByName = "isIdToUrl")
     @Mapping(target = "phone", source = "author.phone")
     ExtendedAd adEntityToExtendedAdDTO(AdEntity adEntity);
 }

@@ -1,29 +1,19 @@
 package ru.skypro.homework.dto;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CommentsList {
     private int count;
     private List<Comment> results;
 
     public CommentsList(List<Comment> results) {
         this.count = results.size();
-        this.results = results;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public List<Comment> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Comment> results) {
         this.results = results;
     }
 }

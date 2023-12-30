@@ -7,7 +7,8 @@ import javax.validation.constraints.*;
 import java.time.Instant;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentEntity {
