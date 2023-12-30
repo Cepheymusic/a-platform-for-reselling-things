@@ -8,7 +8,8 @@ import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
